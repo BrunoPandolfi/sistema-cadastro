@@ -1,53 +1,27 @@
-import { Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input } from "@angular/core";
 
 @Directive({
-  selector: '[onlynumber]'
+  selector: "[onlynumber]"
 })
 export class OnlynumberDirective {
-
-  constructor(private el: ElementRef) {
-  }
+  constructor(private el: ElementRef) {}
 
   @Input() onlynumber: boolean;
 
   @HostListener('keydown', ['$event']) onKeyDown(event) {
-    let valor = '1234';
-    /*let e = <KeyboardEvent> event;
-    if (this.onlynumber) {
-      if ([46, 8, 9, 27, 13, 110, 190].indexOf(e.keyCode) !== -1 ||
-        // Allow: Ctrl+A
-        (e.keyCode === 65 && (e.ctrlKey || e.metaKey)) ||
-        // Allow: Ctrl+C
-        (e.keyCode === 67 && (e.ctrlKey || e.metaKey)) ||
-        // Allow: Ctrl+V
-        (e.keyCode === 86 && (e.ctrlKey || e.metaKey)) ||
-        // Allow: Ctrl+X
-        (e.keyCode === 88 && (e.ctrlKey || e.metaKey)) ||
-        // Allow: home, end, left, right
-        (e.keyCode >= 35 && e.keyCode <= 39)) {
-          // let it happen, don't do anything
-          return;
-        }
-        // Ensure that it is a number and stop the keypress
-        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) && (e.keyCode < 96 || e.keyCode > 105)) {
-            e.preventDefault();
-        }
-      }*/
-
-      let regex = /[^0-9]*$/;
-
-      //let regex: RegExp = new RegExp(regStr);
-
-      console.log(regex.test(valor));
-
-      if (regex.test(valor))
-      {
-        console.log(valor);
-        return;
-      }
-      else
-      {
-        event.preventDefault();
-      }
+    const valor = event.key;
+    const regex = /^\d$/;
+    console.log(event.code);
+    if (event.key === 'Backspace' || event.key === 'Delete')
+    {
+      return;
+    }
+    if (regex.test(valor)) {
+      return;
+    }
+    else
+    {
+      event.preventDefault();
+    }
   }
 }
