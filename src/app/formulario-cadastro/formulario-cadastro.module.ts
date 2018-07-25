@@ -1,3 +1,4 @@
+import { OnlynumberDirective } from './onlynumber.directive';
 import { AlertaErroComponent } from './../alerta-erro/alerta-erro.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -11,7 +12,8 @@ import { FormsModule } from '@angular/forms';
   ],
   declarations: [
     FormularioCadastroComponent,
-    AlertaErroComponent
+    AlertaErroComponent,
+    OnlynumberDirective
   ]
 })
 export class FormularioCadastroModule { }

@@ -74,7 +74,7 @@
     <div class="form-group col-md-3">
       <label for="cep">CEP </label>
       <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP"
-        [class.is-invalid]="isValidTouched(cep)" [ngModel]="aluno.cep" #cep="ngModel" required>
+        [class.is-invalid]="isValidTouched(cep)" [ngModel]="aluno.cep" #cep="ngModel" required onlynumber="true">
       <app-alerta-erro [class.invalid-feedback]="isValidTouched(cep)" [mostrarErro]="isValidTouched(cep)"
         msgErro="CEP é obrigatório">
       </app-alerta-erro>
