@@ -30,16 +30,17 @@
     </div>
     <div class="form-group col-md-3">
       <label for="rg">Documento de Identidade (RG)</label>
-      <input type="text" class="form-control" id="rg" name="rg" placeholder="1234567"
+      <input type="text" class="form-control" id="rg" name="rg" placeholder="1234567" maxlength="7"
         [class.is-invalid]="isValidTouched(rg)" [ngModel]="aluno.rg" #rg="ngModel" required>
         <app-alerta-erro [class.invalid-feedback]="isValidTouched(rg)" [mostrarErro]="isValidTouched(rg)"
-          msgErro="RG é obrigatório">
+          msgErro="RG é obrigatório" onlynumber>
         </app-alerta-erro>
     </div>
     <div class="form-group col-md-3">
       <label for="cpf">CPF</label>
-      <input type="text" class="form-control" id="cpf" name="cpf" placeholder="1234567890"
-        [class.is-invalid]="isValidTouched(cpf)" [ngModel]="aluno.cpf" #cpf="ngModel" required>
+      <input type="text" class="form-control" id="cpf" name="cpf" placeholder="12345678901"
+        [class.is-invalid]="isValidTouched(cpf)" [ngModel]="aluno.cpf" #cpf="ngModel"
+        (blur)="validaCPF(cpf, f)"maxlength="11" required onlynumber>
       <app-alerta-erro [class.invalid-feedback]="isValidTouched(cpf)" [mostrarErro]="isValidTouched(cpf)"
         msgErro="CPF é obrigatório">
       </app-alerta-erro>
@@ -74,7 +75,7 @@
     <div class="form-group col-md-3">
       <label for="cep">CEP </label>
       <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP"
-        [class.is-invalid]="isValidTouched(cep)" [ngModel]="aluno.cep" #cep="ngModel" required onlynumber="true">
+        [class.is-invalid]="isValidTouched(cep)" [ngModel]="aluno.cep" #cep="ngModel" required>
       <app-alerta-erro [class.invalid-feedback]="isValidTouched(cep)" [mostrarErro]="isValidTouched(cep)"
         msgErro="CEP é obrigatório">
       </app-alerta-erro>

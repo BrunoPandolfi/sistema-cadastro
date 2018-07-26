@@ -1,7 +1,7 @@
-import { Directive, ElementRef, HostListener, Input } from "@angular/core";
+import { Directive, ElementRef, HostListener, Input } from '@angular/core';
 
 @Directive({
-  selector: "[onlynumber]"
+  selector: '[onlynumber]'
 })
 export class OnlynumberDirective {
   constructor(private el: ElementRef) {}
@@ -10,8 +10,8 @@ export class OnlynumberDirective {
 
   @HostListener('keydown', ['$event']) onKeyDown(event) {
     const valor = event.key;
-    const regex = /^\d$/;
-    console.log(event.code);
+    const regex = /\d/;
+    //console.log(event.code);
     if (event.key === 'Backspace' || event.key === 'Delete')
     {
       return;
