@@ -21,13 +21,20 @@ export class FormularioCadastroComponent implements OnInit {
     return (!campo.valid && campo.touched);
   }
 
-  validaCPF(cpf, form){
+  validaCPF(campo){
     const RegEp = /\d{11}/;
-    console.log(RegEp.test(cpf.value));
-    if (RegEp.test(cpf.value))
-    {
-      console.log(cpf.value);
-    }
+    return (RegEp.test(campo.value));
   }
+
+  validaRG(campo){
+    const RegEp = /\d{7}/;
+    return (RegEp.test(campo.value));
+  }
+
+  validaCEP(campo){
+    const RegEp = /\d{8}/;
+    return (RegEp.test(campo.value));
+  }
+
 
 }

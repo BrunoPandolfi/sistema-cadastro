@@ -35,14 +35,20 @@
         <app-alerta-erro [class.invalid-feedback]="isValidTouched(rg)" [mostrarErro]="isValidTouched(rg)"
           msgErro="RG é obrigatório" onlynumber>
         </app-alerta-erro>
+        <app-alerta-erro [class.invalid-feedback]="validaRG(rg)" [mostrarErro]="!validaRG(rg) && rg.touched"
+        msgErro="RG inválido">
+      </app-alerta-erro>
     </div>
     <div class="form-group col-md-3">
       <label for="cpf">CPF</label>
       <input type="text" class="form-control" id="cpf" name="cpf" placeholder="12345678901"
         [class.is-invalid]="isValidTouched(cpf)" [ngModel]="aluno.cpf" #cpf="ngModel"
-        (blur)="validaCPF(cpf, f)"maxlength="11" required onlynumber>
+        maxlength="11" required onlynumber>
       <app-alerta-erro [class.invalid-feedback]="isValidTouched(cpf)" [mostrarErro]="isValidTouched(cpf)"
         msgErro="CPF é obrigatório">
+      </app-alerta-erro>
+      <app-alerta-erro [class.invalid-feedback]="validaCPF(cpf)" [mostrarErro]="!validaCPF(cpf) && cpf.touched"
+        msgErro="CPF inválido">
       </app-alerta-erro>
     </div>
     <div class="form-group col-md-4">
@@ -61,6 +67,33 @@
       </div>
     </div>
   </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label for="cep">CEP </label>
+      <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" [class.is-invalid]="isValidTouched(cep)"
+        [ngModel]="aluno.cep" #cep="ngModel" required onlynumber maxlength="8">
+      <app-alerta-erro [class.invalid-feedback]="isValidTouched(cep)" [mostrarErro]="isValidTouched(cep)"
+        msgErro="CEP é obrigatório">
+      </app-alerta-erro>
+      <app-alerta-erro [class.invalid-feedback]="validaCEP(cep)" [mostrarErro]="!validaCEP(cep) && cep.touched"
+        msgErro="CEP inválido">
+      </app-alerta-erro>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="numero-casa">Número da casa </label>
+      <input type="text" class="form-control" id="numero-casa" name="numero_casa" placeholder="Numero"
+        [class.is-invalid]="isValidTouched(numero_casa)" [ngModel]="aluno.numero_casa" #numero_casa="ngModel" required>
+      <app-alerta-erro [class.invalid-feedback]="isValidTouched(numero_casa)" [mostrarErro]="isValidTouched(numero_casa)"
+        msgErro="Número da casa é obrigatório">
+      </app-alerta-erro>
+    </div>
+    <div class="form-group col-md-7">
+      <label for="complemento">Complemento </label>
+      <input type="text" class="form-control" id="complemento" name="complemento"
+        [ngModel]="aluno.complemento" #complemento="ngModel">
+    </div>
+  </div>
   <div class="form-group row">
     <div class="col-sm-12">
       <label for="nome-rua">Rua</label>
@@ -72,27 +105,6 @@
     </div>
   </div>
   <div class="form-row">
-    <div class="form-group col-md-3">
-      <label for="cep">CEP </label>
-      <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP"
-        [class.is-invalid]="isValidTouched(cep)" [ngModel]="aluno.cep" #cep="ngModel" required>
-      <app-alerta-erro [class.invalid-feedback]="isValidTouched(cep)" [mostrarErro]="isValidTouched(cep)"
-        msgErro="CEP é obrigatório">
-      </app-alerta-erro>
-    </div>
-    <div class="form-group col-md-2">
-      <label for="numero-casa">Número da casa </label>
-      <input type="text" class="form-control" id="numero-casa" name="numero_casa" placeholder="Numero"
-        [class.is-invalid]="isValidTouched(numero_casa)" [ngModel]="aluno.numero_casa" #numero_casa="ngModel" required>
-      <app-alerta-erro [class.invalid-feedback]="isValidTouched(numero_casa)" [mostrarErro]="isValidTouched(numero_casa)"
-        msgErro="Número da casa é obrigatório">
-      </app-alerta-erro>
-    </div>
-    <div class="form-group col-md-4">
-      <label for="complemento">Complemento </label>
-      <input type="text" class="form-control" id="complemento" name="complemento"
-        [ngModel]="aluno.complemento" #complemento="ngModel">
-    </div>
     <div class="form-group col-md-2">
       <label for="cidade"> Cidade </label>
       <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade"
@@ -101,9 +113,7 @@
         msgErro="Cidade é obrigatório">
       </app-alerta-erro>
     </div>
-  </div>
-  <div class="form-group row">
-    <div class="col-sm-1">
+    <div class="form-group col-md-2">
       <label for="estado"> Estado </label>
       <input type="text" class="form-control" id="estado" name="estado" placeholder="Estado"
         [class.is-invalid]="isValidTouched(estado)" [ngModel]="aluno.estado" #estado="ngModel" required>
