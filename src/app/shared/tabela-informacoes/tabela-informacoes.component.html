@@ -1,0 +1,16 @@
+<table class="table table-dark table-sm" *ngIf="form" >
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Data Nasc.</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="form.submitted" >
+    <tr>
+      <th scope="row">1</th>
+      <td>{{ form.value.nome}}</td>
+      <td>{{ form.value.data_nasc | date: 'dd-MM-yyyy'}}</td>
+    </tr>
+  </tbody>
+</table>

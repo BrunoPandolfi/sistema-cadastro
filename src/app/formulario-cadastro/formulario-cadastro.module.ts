@@ -1,19 +1,19 @@
-import { OnlynumberDirective } from './onlynumber.directive';
-import { AlertaErroComponent } from './../alerta-erro/alerta-erro.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormularioCadastroComponent } from './formulario-cadastro.component';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    HttpModule,
+    SharedModule
   ],
   declarations: [
-    FormularioCadastroComponent,
-    AlertaErroComponent,
-    OnlynumberDirective
+    FormularioCadastroComponent
   ]
 })
 export class FormularioCadastroModule { }

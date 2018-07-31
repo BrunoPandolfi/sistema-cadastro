@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-tabela-informacoes',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tabela-informacoes.component.css']
 })
 export class TabelaInformacoesComponent implements OnInit {
+
+  @Input() form;
 
   constructor() { }
 
