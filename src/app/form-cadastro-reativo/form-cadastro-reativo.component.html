@@ -1,3 +1,134 @@
-<p>
-  form-cadastro-reativo works!
-</p>
+<form class="p-4 mt-1" [formGroup]="formulario" (ngSubmit)="onSubmit()">
+  <div class="form-group row">
+    <div class="col-sm-12">
+      <label for="nome">Nome completo</label>
+      <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome completo"
+        [ngClass]="aplicaIsInvalid('nome')" formControlName="nome">
+      <app-alerta-erro [ngClass]="aplicaIsInvalidFeedBack('nome')" [mostrarErro]="isValidTouched('nome')"
+        msgErro="Nome é obrigatório">
+      </app-alerta-erro>
+    </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-sm-12">
+      <label for="nome-mae">Nome da Mãe</label>
+      <input type="text" class="form-control" id="nome-mae" name="nome_mae"placeholder="Nome da mãe"
+        [ngClass]="aplicaIsInvalid('nome_mae')" formControlName="nome_mae">
+      <app-alerta-erro [ngClass]="aplicaIsInvalidFeedBack('nome_mae')" [mostrarErro]="isValidTouched('nome_mae')"
+        msgErro="Nome da mãe é obrigatório">
+      </app-alerta-erro>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label for="data-nasc">Data de Nascimento</label>
+      <input type="date" class="form-control" id="data-nasc" placeholder="01/10/1970"
+        [ngClass]="aplicaIsInvalid('data_nasc')" formControlName="data_nasc">
+      <app-alerta-erro [ngClass]="aplicaIsInvalidFeedBack('data_nasc')" [mostrarErro]="isValidTouched('data_nasc')"
+        msgErro="Data de nascimento é obrigatório">
+      </app-alerta-erro>
+    </div>
+    <div class="form-group col-md-3">
+      <label for="rg">Documento de Identidade (RG)</label>
+      <input type="text" class="form-control" id="rg" placeholder="1234567" maxlength="7"
+        [ngClass]="aplicaIsInvalid('rg')" formControlName="rg">
+        <app-alerta-erro [ngClass]="aplicaIsInvalidFeedBack('rg')" [mostrarErro]="isValidTouched('rg')"
+          msgErro="RG é obrigatório" onlynumber>
+        </app-alerta-erro>
+        <app-alerta-erro [ngClass]="aplicaIsInvalidFeedBack('rg')" [mostrarErro]="!validaRG()"
+        msgErro="RG inválido">
+      </app-alerta-erro>
+    </div>
+    <div class="form-group col-md-3">
+      <label for="cpf">CPF</label>
+      <input type="text" class="form-control" id="cpf" placeholder="12345678901"
+        [ngClass]="aplicaIsInvalid('cpf')" formControlName="cpf" maxlength="11" onlynumber>
+      <app-alerta-erro [ngClass]="aplicaIsInvalidFeedBack('cpf')" [mostrarErro]="isValidTouched('rg')"
+        msgErro="CPF é obrigatório">
+      </app-alerta-erro>
+      <app-alerta-erro [ngClass]="aplicaIsInvalidFeedBack('cpf')" [mostrarErro]="!validaCPF()"
+        msgErro="CPF inválido">
+      </app-alerta-erro>
+    </div>
+    <div class="form-group col-md-3">
+      <label for="sexo" class="control-panel">
+        Sexo
+      </label>
+      <div class="col-sm-12">
+        <div class="form-check form-check-inline" *ngFor="let opcao of sexoOp">
+          <input class="form-check-input" type="radio" name="sexo" [value]="opcao.valor" formControlName="sexo">
+          <label class="form-check-label">{{ opcao.desc }}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div formGroupName="endereco">
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label for="cep"> CEP </label>
+        <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP"
+          [ngClass]="aplicaIsInvalid('endereco.cep')" formControlName="cep" onlynumber maxlength="8" (blur)="consultaCEP()">
+        <app-alerta-erro [ngClass]="aplicaIsInvalidFeedBack('endereco.cep')" [mostrarErro]="isValidTouched('endereco.cep')"
+          msgErro="CEP é obrigatório">
+        </app-alerta-erro>
+        <app-alerta-erro [ngClass]="aplicaIsInvalidFeedBack('endereco.cep')" [mostrarErro]="!validaCEP()"
+          msgErro="CEP inválido">
+        </app-alerta-erro>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="numero-casa">Número da casa </label>
+        <input type="text" class="form-control" id="numero-casa" name="numero_casa" placeholder="Numero"
+          [ngClass]="aplicaIsInvalid('endereco.numero_casa')" formControlName="numero_casa">
+        <app-alerta-erro [ngClass]="aplicaIsInvalidFeedBack('endereco.numero_casa')" [mostrarErro]="isValidTouched('endereco.numero_casa')"
+          msgErro="Número da casa é obrigatório">
+        </app-alerta-erro>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="complemento">Complemento </label>
+        <input type="text" class="form-control" id="complemento" name="complemento" formControlName="numero_casa">
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="col-sm-12">
+        <label for="nome-rua">Rua</label>
+        <input type="text" class="form-control" id="nome_rua" name="nome_rua" placeholder="Nome da rua"
+          [ngClass]="aplicaIsInvalid('endereco.nome_rua')" formControlName="nome_rua">
+        <app-alerta-erro [ngClass]="aplicaIsInvalidFeedBack('endereco.nome_rua')" [mostrarErro]="isValidTouched('endereco.nome_rua')"
+          msgErro="Nome da rua é obrigatório">
+        </app-alerta-erro>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label for="bairro"> Bairro </label>
+        <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro"
+          [ngClass]="aplicaIsInvalid('endereco.bairro')" formControlName="bairro">
+        <app-alerta-erro [ngClass]="aplicaIsInvalidFeedBack('endereco.bairro')" [mostrarErro]="isValidTouched('endereco.bairro')"
+          msgErro="Nome do bairro é obrigatório">
+        </app-alerta-erro>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="cidade"> Cidade </label>
+        <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade"
+          [ngClass]="aplicaIsInvalid('endereco.cidade')" formControlName="cidade">
+        <app-alerta-erro [ngClass]="aplicaIsInvalidFeedBack('endereco.cidade')" [mostrarErro]="isValidTouched('endereco.cidade')"
+          msgErro="Nome da cidade é obrigatório">
+        </app-alerta-erro>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="estado"> Estado </label>
+        <input type="text" class="form-control" id="estado" name="estado" placeholder="Estado"
+          [ngClass]="aplicaIsInvalid('endereco.estado')" formControlName="estado">
+        <app-alerta-erro [ngClass]="aplicaIsInvalidFeedBack('endereco.estado')" [mostrarErro]="isValidTouched('endereco.estado')"
+          msgErro="Estado é obrigatório">
+        </app-alerta-erro>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12">
+    <button type="submit" class="btn btn-success">Submit</button>
+  </div>
+  <div class="col-sm-12 mt-5">
+    <app-tabela-informacoes [form]="formulario"></app-tabela-informacoes>
+  </div>
+</form>

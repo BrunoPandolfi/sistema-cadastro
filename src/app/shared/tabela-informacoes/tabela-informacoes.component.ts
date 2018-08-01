@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TabelaInformacoesComponent implements OnInit {
 
   @Input() form;
+  colDados: string[] = ['CPF', 'Nome', 'Nome da mãe', 'Data Nasc.', 'RG', 'Sexo'];
 
   constructor() { }
 

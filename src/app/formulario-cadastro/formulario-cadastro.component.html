@@ -56,13 +56,9 @@
         Sexo
       </label>
       <div class="col-sm-12">
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="genero" value="m" [ngModel]="aluno.genero" #genero="ngModel">
-          <label class="form-check-label">Masculino</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" value="f" name="genero" [ngModel]="aluno.genero" #genero="ngModel">
-          <label class="form-check-label">Feminino</label>
+        <div class="form-check form-check-inline" *ngFor="let opcao of sexoOp">
+          <input class="form-check-input" type="radio" name="sexo" [value]="opcao.valor" [ngModel]="aluno.sexo" #sexo="ngModel">
+          <label class="form-check-label">{{ opcao.desc }}</label>
         </div>
       </div>
     </div>
@@ -76,7 +72,7 @@
         <app-alerta-erro [class.invalid-feedback]="isValidTouched(cep)" [mostrarErro]="isValidTouched(cep)"
           msgErro="CEP é obrigatório">
         </app-alerta-erro>
-        <app-alerta-erro [class.invalid-feedback]="validaCEP(cep)" [mostrarErro]="!validaCEP(cep) && cep.touched"
+        <app-alerta-erro [class.invalid-feedback]="validaCEP(cep.value)" [mostrarErro]="!validaCEP(cep.value)&& cep.touched"
           msgErro="CEP inválido">
         </app-alerta-erro>
       </div>

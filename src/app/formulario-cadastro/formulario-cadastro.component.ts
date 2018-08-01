@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { OptionService } from './../shared/services/option.service';
 import { Http } from '@angular/http';
+import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { NgModelGroup, NgModel, FormGroup } from '@angular/forms';
-import { NgForm } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+import { CepService } from '../shared/services/cep.service';
+import { SendserverService } from '../shared/services/sendserver.service';
 
 @Component({
   selector: 'app-formulario-cadastro',
@@ -12,9 +14,16 @@ import { NgForm } from '@angular/forms';
 export class FormularioCadastroComponent implements OnInit {
 
   aluno: any = {};
-  constructor(private http: Http) { }
+  sexoOp: any[];
+  constructor(
+    private http: Http,
+    private cepService: CepService,
+    private optionService: OptionService,
+    private sendServer: SendserverService
+  ) { }
 
   ngOnInit() {
+    this.sexoOp = this.optionService.getSexo();
   }
 
   onSubmit(form){
@@ -22,11 +31,13 @@ export class FormularioCadastroComponent implements OnInit {
     if (form.valid)
     {
       console.log('Formuario válido');
-      this.http.post('https://httpbin.org/post', JSON.stringify(form.value))
-      .pipe(map(res => res))
-      .subscribe(dados => {
-        console.log(dados);
-      });
+      this.sendServer.sendDadosForm(form)
+        .subscribe((err) => {
+          if(err){
+            console.log(err);
+          };
+          console.log("Success");
+        });
     }
     else {
       console.log('Formulário inválido');
@@ -62,38 +73,19 @@ export class FormularioCadastroComponent implements OnInit {
     return (RegEp.test(campo.value));
   }
 
-  validaCEP(campo){
-    const RegEp = /\d{8}/;
-    return (RegEp.test(campo.value));
+  validaCEP(cep: string)
+  {
+    return this.cepService.validaCEP(cep);
   }
 
   consultaCEP(cep, form)
   {
-    // Nova variável "cep" somente com dígitos.
-    //cep = cep.replace(/\D/g, '');
-
-    // Verifica se campo cep possui valor informado.
-    console.log(this.validaCEP(cep));
-
-    if (cep !== '')
+    const numcep = cep.value;
+    if (cep !== null || cep !== '')
     {
-      if (this.validaCEP(cep)) {
-
-        console.log("Entrou");
-
-          // Expressão regular para validar o CEP.
-          //const validacep = /^[0-9]{8}$/;
-
-          // Valida o formato do CEP.
-          //if(validacep.test(cep)) {
-
-            this.resetaDadosForm(form);
-
-            this.http.get(`//viacep.com.br/ws/${cep.value}/json`)
-            .pipe(map(dados => dados.json()))
-            .subscribe(dados => this.populaDadosForm(dados, form));
-          //}
-      }
+        this.resetaDadosForm(form);
+        this.cepService.consultaCEP(numcep)
+          .subscribe(dados => this.populaDadosForm(dados, form));
     }
   }
 
