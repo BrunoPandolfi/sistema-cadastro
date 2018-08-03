@@ -1,6 +1,6 @@
-import { OptionService } from './../shared/services/option.service';
+import { OptionService } from '../shared/services/option.service';
 import { Http } from '@angular/http';
-import { CepService } from './../shared/services/cep.service';
+import { CepService } from '../shared/services/cep.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
@@ -15,6 +15,7 @@ export class FormCadastroReativoComponent implements OnInit {
 
   formulario: FormGroup;
   sexoOp: any[];
+  teste: any = [];
   constructor(
     private formBuilder: FormBuilder,
     private cepService: CepService,
@@ -25,7 +26,6 @@ export class FormCadastroReativoComponent implements OnInit {
 
   ngOnInit() {
     this.sexoOp = this.optionService.getSexo();
-
     this.formulario = this.formBuilder.group({
       nome: [null, Validators.required],
       nome_mae: [null, Validators.required],
@@ -46,14 +46,12 @@ export class FormCadastroReativoComponent implements OnInit {
   }
 
   onSubmit(){
-    //console.log(controls['endereco']);
     if (this.formulario.valid)
     {
       console.log('Formulario válido');
       this.sendServer.sendDadosForm(this.formulario)
         .subscribe(dados => {
-          console.log(dados);
-          console.log(this.formulario);
+          JSON.stringify(dados);
         });
     }
     else
@@ -61,6 +59,12 @@ export class FormCadastroReativoComponent implements OnInit {
       console.log('Formulário inválido');
       this.verificaValidacoesForm (this.formulario);
     }
+  /*  this.http.get('/posts')
+      .pipe(map((posts) => posts))
+      .subscribe(posts => {
+        this.teste = posts;
+      });
+      */
   }
 
   verificaValidacoesForm(formgroup: FormGroup)

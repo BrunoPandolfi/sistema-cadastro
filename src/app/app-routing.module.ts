@@ -1,3 +1,4 @@
+import { TabelaInformacoesComponent } from './shared/tabela-informacoes/tabela-informacoes.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes} from '@angular/router';
 import { FormularioCadastroComponent } from './formulario-cadastro/formulario-cadastro.component';
@@ -6,7 +7,7 @@ import { FormCadastroReativoComponent } from './form-cadastro-reativo/form-cadas
 const routes: Routes = [
   {path: 'formularioTemplate', component: FormularioCadastroComponent},
   {path: 'formularioReativo', component: FormCadastroReativoComponent},
-  {path: '', redirectTo: '/formularioTemplate', pathMatch: 'full'}
+  {path: '', redirectTo: '/formularioReativo', pathMatch: 'full'}
 ];
 
 

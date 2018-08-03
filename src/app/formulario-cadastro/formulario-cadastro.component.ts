@@ -1,4 +1,4 @@
-import { OptionService } from './../shared/services/option.service';
+import { OptionService } from '../shared/services/option.service';
 import { Http } from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
