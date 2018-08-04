@@ -1,7 +1,6 @@
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { OnlynumberDirective } from './diretivas/onlynumber.directive';
-import { TabelaInformacoesComponent } from './tabela-informacoes/tabela-informacoes.component';
 import { AlertaErroComponent } from './alerta-erro/alerta-erro.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -15,13 +14,11 @@ import { CommonModule } from '@angular/common';
   ],
   declarations: [
     OnlynumberDirective,
-    AlertaErroComponent,
-    TabelaInformacoesComponent
+    AlertaErroComponent
   ],
   exports: [
     OnlynumberDirective,
-    AlertaErroComponent,
-    TabelaInformacoesComponent
+    AlertaErroComponent
   ]
 })
 export class SharedModule { }

@@ -1,4 +1,3 @@
-import { TabelaInformacoesComponent } from './shared/tabela-informacoes/tabela-informacoes.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes} from '@angular/router';
 import { FormularioCadastroComponent } from './formulario-cadastro/formulario-cadastro.component';

@@ -1,3 +1,4 @@
+import { TabelaInformacoesModule } from './tabela-informacoes/tabela-informacoes.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -14,7 +15,8 @@ import { FormCadastroReativoModule } from './form-cadastro-reativo/form-cadastro
     BrowserModule,
     AppRoutingModule,
     FormularioCadastroModule,
-    FormCadastroReativoModule
+    FormCadastroReativoModule,
+    TabelaInformacoesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

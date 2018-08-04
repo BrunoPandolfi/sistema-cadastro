@@ -7,11 +7,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let pessoa of listaPessoas">
-      <td>{{ pessoa.pessoa_id }} </td>
+    <tr *ngFor="let pessoa of listaPessoas; let i = index">
+      <td>{{ i + 1}} </td>
       <td>{{ pessoa.pessoa_nome }} </td>
-      <td>{{ pessoa.pessoa_nome_mae }} </td>
-      <td>{{ pessoa.pessoa_data_nasc | date: 'dd/MM/yyyy'}} </td>
+      <td>{{ pessoa.pessoa_mae }} </td>
+      <td>{{ pessoa.pessoa_dt_nasc | date: 'dd/MM/yyyy'}} </td>
       <td>{{ pessoa.pessoa_rg }} </td>
       <td>{{ pessoa.pessoa_cpf }} </td>
       <td>{{ pessoa.pessoa_sexo }} </td>

@@ -1,5 +1,5 @@
-import { BackendService } from './../services/backend.service';
 import { Component, OnInit, Input } from '@angular/core';
+import { BackendService } from '../shared/services/backend.service';
 
 @Component({
   selector: 'app-tabela-informacoes',
@@ -8,7 +8,6 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class TabelaInformacoesComponent implements OnInit {
 
-  @Input() form;
   colInfo: string[] = ['ID', 'CPF', 'Nome', 'Nome da mãe', 'Data Nasc.', 'RG', 'Sexo'];
   listaPessoas: any = [];
 
