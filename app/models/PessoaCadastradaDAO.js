@@ -7,15 +7,17 @@ class PessoaCadastradaDAO{
   {
     this.connection.query(
       "INSERT INTO pessoa VALUES ('" +
-      dados.pessoa_cpf + "','" +
-      dados.pessoa_nome + "','" +
-      dados.pessoa_mae + "','" +
-      dados.pessoa_dt_nasc + "','" +
-      dados.pessoa_rg + "','" +
-      dados.pessoa_sexo + "');", (err, result)=>{
-        console.log(err);
+      dados.cpf + "','" +
+      dados.nome + "','" +
+      dados.nome_mae + "','" +
+      dados.data_nasc + "','" +
+      dados.rg + "','" +
+      dados.sexo + "');", (err, result)=>{
+        if (err == null)
+        {
+          console.log('Pessoa cadastrada com sucesso');
+        }
     });
-    console.log(dados);
   }
 
   obterListaPessoasCads(callback)

@@ -1,6 +1,6 @@
 const db = require ('../../config/dbConnection');
 const {PessoaCadastradaDAO} = require ('../models/PessoaCadastradaDAO');
-const {Pessoa} = require ('../objetos/Pessoa');
+const { EnderecoDAO } = require ('../models/EnderecoDAO');
 
 class PessoaCadastrada{
 
@@ -13,8 +13,9 @@ class PessoaCadastrada{
     let connection = db();
     connection.connect();
     let pessoaDAO = new PessoaCadastradaDAO(connection);
-    let novaPessoa = new Pessoa(req.body);
-    pessoaDAO.cadastrarPessoa(novaPessoa);
+    let enderecoDAO = new EnderecoDAO(connection);
+    pessoaDAO.cadastrarPessoa(req.body);
+    enderecoDAO.cadastrarEnderecoPessoa(req.body);
   }
 
   obterPessoasCadastradas(req, res){
